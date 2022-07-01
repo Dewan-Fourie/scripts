@@ -7,9 +7,9 @@ Function Invoke-LoadMethod() {
     param(
             [Microsoft.SharePoint.Client.ClientObject]$Object = $(throw "Please provide a Client Object"),
             [string]$PropertyName
-        ) 
+        )
    $ctx = $Object.Context
-   $load = [Microsoft.SharePoint.Client.ClientContext].GetMethod("Load") 
+   $load = [Microsoft.SharePoint.Client.ClientContext].GetMethod("Load")
    $type = $Object.GetType()
    $clientLoad = $load.MakeGenericMethod($type)
    
@@ -21,7 +21,7 @@ Function Invoke-LoadMethod() {
 }
     
 ##Variables for Processing
-$SiteUrl = "https://crescent.sharepoint.com"
+$SiteUrl = ""
 $ListName= "Documents"
    
 #Get Credentials to connect
@@ -29,7 +29,7 @@ $Cred= Get-Credential
 $Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($Cred.Username, $Cred.Password)
    
 #Set up the context
-$Context = New-Object Microsoft.SharePoint.Client.ClientContext($SiteUrl) 
+$Context = New-Object Microsoft.SharePoint.Client.ClientContext($SiteUrl)
 $Context.Credentials = $Credentials
     
 #Get the List
@@ -39,7 +39,7 @@ $Query = New-Object Microsoft.SharePoint.Client.CamlQuery
 $Query.ViewXml = "<View Scope='RecursiveAll'><RowLimit>2000</RowLimit></View>"
  
 #Batch process list items - to mitigate list threshold issue on larger lists
-Do {  
+Do { 
     #Get items from the list in batches
     $ListItems = $List.GetItems($Query)
     $Context.Load($ListItems)
@@ -63,3 +63,6 @@ Do {
 } While ($Query.ListItemCollectionPosition -ne $null)
   
 Write-host "Broken Permissions are Deleted on All Items!" -ForegroundColor Green
+
+
+#Read more: https://www.sharepointdiary.com/2016/02/powershell-to-delete-unique-permissions-for-all-list-items-sharepoint-online.html#ixzz7UYJzEMfN
