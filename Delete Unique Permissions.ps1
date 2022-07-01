@@ -22,7 +22,7 @@ Function Invoke-LoadMethod() {
     
 ##Variables for Processing
 $SiteUrl = ""
-$ListName= "Documents"
+$ListName= "Documents" 
    
 #Get Credentials to connect
 $Cred= Get-Credential
