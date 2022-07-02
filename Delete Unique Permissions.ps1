@@ -21,9 +21,9 @@ Function Invoke-LoadMethod() {
 }
     
 ##Variables for Processing
-$SiteUrl = ""
-$ListName= "Documents" 
-   
+$SiteUrl = "https://lealtec.sharepoint.com/sites/Testing"
+$ListName= "Documents"
+
 #Get Credentials to connect
 $Cred= Get-Credential
 $Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($Cred.Username, $Cred.Password)
