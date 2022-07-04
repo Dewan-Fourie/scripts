@@ -60,7 +60,7 @@ Do {
         }
     }
     $Context.ExecuteQuery()
-} While ($Query.ListItemCollectionPosition -ne $null)
+} While ($null -ne $Query.ListItemCollectionPosition)
   
 Write-host "Broken Permissions are Deleted on All Items!" -ForegroundColor Green
 
