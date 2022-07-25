@@ -1,6 +1,6 @@
 #The HTTP POST URL from Microsoft Flow
 
-$URI = “” #ADD YOUR URL HERE
+$URI = "" #ADD YOUR URL HERE
 
 #Get Current ComputerName
 
@@ -16,17 +16,17 @@ $CurrentUserGroups = whoami /groups
 
 #Check if current user is a member of the Local Admins group
 
-$CurrentUserAdmin = $CurrentUserGroups -like “*S-1-5-32-544*”
+$CurrentUserAdmin = $CurrentUserGroups -like "*S-1-5-32-544*"
 
 #If user is an admin
 
 if ($CurrentUserAdmin) {
 
-$body = ConvertTo-JSON @{Device = $computer; User = $CurrentUser; IsAdmin = ‘true’}
+$body = ConvertTo-JSON @{Device = $computer; User = $CurrentUser; IsAdmin = 'true'}
 
 #Start Flow
 
-Invoke-RestMethod -uri $URI -Method Post -body $body -ContentType ‘application/json’
+Invoke-RestMethod -uri $URI -Method Post -body $body -ContentType 'application/json'
 
 }
 
@@ -34,10 +34,10 @@ Invoke-RestMethod -uri $URI -Method Post -body $body -ContentType ‘application
 
 else {
 
-$body = ConvertTo-JSON @{Device = $computer; User = $CurrentUser; IsAdmin = ‘false’}
+$body = ConvertTo-JSON @{Device = $computer; User = $CurrentUser; IsAdmin = 'false'}
 
 #Start Flow
 
-Invoke-RestMethod -uri $URI -Method Post -body $body -ContentType ‘application/json’
+Invoke-RestMethod -uri $URI -Method Post -body $body -ContentType 'application/json'
 
 }
