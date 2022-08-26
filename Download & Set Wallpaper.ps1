@@ -7,10 +7,10 @@ Function Set-WallPaper($Value)
 New-Item -Path "c:\" -Name "wp" -ItemType "directory" -Force
 
 # Enter the wallpaper URL
-$url = "http://manage.leal.com.au/HappyHaven/Background/background.jpg"
+$url = "http://manage.leal.com.au/HappyHaven/<client>/background.jpg"
 
-if ((Invoke-WebRequest -Uri $url -Method 'POST' -OutFile C:\wp\wp.jpg).StatusCode -eq 200) {
-    Invoke-WebRequest -Uri $url -OutFile C:\wp\wp.jpg
+if ((Invoke-WebRequest -Uri $url -Method 'POST' -OutFile C:\wp\background.jpg).StatusCode -eq 200) {
+    Invoke-WebRequest -Uri $url -OutFile C:\wp\background.jpg
 }
 
-Set-WallPaper -value "C:\wp\wp.jpg"
+Set-WallPaper -value "C:\wp\background.jpg"
