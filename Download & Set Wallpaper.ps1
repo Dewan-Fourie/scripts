@@ -1,3 +1,7 @@
+# This script is used instead of the configuration profile 
+# as the script does not have the same licensing limitations 
+# as the "Desktop Background" configuration profile.
+
 Function Set-WallPaper($Value)
 {
  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value $value
@@ -7,7 +11,7 @@ Function Set-WallPaper($Value)
 New-Item -Path "c:\" -Name "wp" -ItemType "directory" -Force
 
 # Enter the wallpaper URL
-$url = "http://manage.leal.com.au/HappyHaven/<client>/background.jpg"
+$url = "https://www.leal.com.au/wallpapers/happyhaven/background.jpg"
 
 if ((Invoke-WebRequest -Uri $url -Method 'POST' -OutFile C:\wp\background.jpg).StatusCode -eq 200) {
     Invoke-WebRequest -Uri $url -OutFile C:\wp\background.jpg
