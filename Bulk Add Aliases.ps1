@@ -7,7 +7,7 @@ Connect-ExchangeOnline -UserPrincipalName '<global admin account>'
 
 # Enter mailbox to force MRM to run on
 Import-CSV "<Full CSV File Location>" |
-foreach {Set-Mailbox $_.Mailbox -EmailAddresses @{add=$_.NewEmailAddress}}
+ForEach-Object {Set-Mailbox $_.Mailbox -EmailAddresses @{add=$_.NewEmailAddress}}
 
 
 Disconnect-ExchangeOnline
