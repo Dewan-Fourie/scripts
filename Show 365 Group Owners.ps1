@@ -7,7 +7,7 @@ $Groups = Get-UnifiedGroup -ResultSize Unlimited -SortBy Name
 
 $Groups | Foreach-Object {
     #Get Group Owners
-    $GroupOwners = Get-UnifiedGroupLinks -LinkType Owners -Identity $_.Id | Select DisplayName, PrimarySmtpAddress
+    $GroupOwners = Get-UnifiedGroupLinks -LinkType Owners -Identity $_.Id | Select-object DisplayName, PrimarySmtpAddress
     $GroupData += New-Object -TypeName PSObject -Property @{
     GroupName = $_.DisplayName
     GroupEmail = $_.PrimarySmtpAddress
