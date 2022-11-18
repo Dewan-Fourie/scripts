@@ -21,8 +21,8 @@ Function Invoke-LoadMethod() {
 }
     
 ##Variables for Processing
-$SiteUrl = "https://lealtec.sharepoint.com/sites/Testing"
-$ListName= "Documents"
+$SiteUrl = "SharePoint site URL"
+$ListName= "Documet Library"
 
 #Get Credentials to connect
 $Cred= Get-Credential
@@ -57,6 +57,8 @@ Do {
             #Reset Permission Inheritance
             $ListItem.ResetRoleInheritance()
             Write-host  -ForegroundColor Yellow "Inheritence Restored on Item:" $ListItem.ID
+        } else {
+            Write-host -ForegroundColor Blue "Item scanned:" $ListItem.ID
         }
     }
     $Context.ExecuteQuery()
