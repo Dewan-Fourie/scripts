@@ -1,13 +1,13 @@
 # Import dependancies
-Import-Module "C:\Program Files\WindowsPowerShell\Modules\ExchangeOnlineManagement"
+Import-Module "<EXO V2 Module>"
 
-Connect-ExchangeOnline -UserPrincipalName 'nfit@amsant.onmicrosoft.com'
+Connect-ExchangeOnline -UserPrincipalName '<Global/Exchange Admin>'
 
-$UsersCSV = Import-Csv "C:\Users\Work\OneDrive - Leal Technology\Documents\AMSANT\External Users\test.csv"
+$UsersCSV = Import-Csv "<Full file path of CSV>"
 # CSV must have Email and Username column titles
 
 foreach ($line in $UsersCSV){
-    New-MailContact -Name $line.Username -ExternalEmailAddress $line.Email | Out-Null
+    New-MailContact -Name $line.Username -ExternalEmailAddress $line.Email -Erroraction Silentlycontinue | Out-Null
     if ($null -ne (Get-Contact -Identity $line.Email -Erroraction Silentlycontinue)){
         Write-Host $line.Username was added successfully -ForegroundColor Green
     } else {
