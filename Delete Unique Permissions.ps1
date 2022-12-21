@@ -21,8 +21,8 @@ Function Invoke-LoadMethod() {
 }
     
 ##Variables for Processing
-$SiteUrl = "SharePoint site URL"
-$ListName= "Documet Library"
+$SiteUrl = "<SharePoint site URL>"
+$ListName= "<Document library>"
 
 #Get Credentials to connect
 $Cred= Get-Credential
@@ -37,7 +37,16 @@ $List = $Context.web.Lists.GetByTitle($ListName)
  
 $Query = New-Object Microsoft.SharePoint.Client.CamlQuery
 $Query.ViewXml = "<View Scope='RecursiveAll'><RowLimit>2000</RowLimit></View>"
- 
+
+$Counter = 0
+Do {
+    $TotalCounter = $List.GetItems($Query)
+    $Context.Load($TotalCounter)
+    $Context.ExecuteQuery()
+    $Counter = $Counter + ($TotalCounter).Count       
+    $Query.ListItemCollectionPosition = $TotalCounter.ListItemCollectionPosition
+} While ($null -ne $Query.ListItemCollectionPosition)
+
 #Batch process list items - to mitigate list threshold issue on larger lists
 Do { 
     #Get items from the list in batches
@@ -58,7 +67,8 @@ Do {
             $ListItem.ResetRoleInheritance()
             Write-host  -ForegroundColor Yellow "Inheritence Restored on Item:" $ListItem.ID
         } else {
-            Write-host -ForegroundColor Blue "Item scanned:" $ListItem.ID
+            $progress = ($ListItem.ID)/$Counter*100
+            Write-Progress -Activity "Removing permissions from..." -PercentComplete $progress -Status $ListName -CurrentOperation $ListItem.ID
         }
     }
     $Context.ExecuteQuery()
