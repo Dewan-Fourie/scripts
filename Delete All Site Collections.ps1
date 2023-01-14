@@ -1,4 +1,4 @@
-import-module "C:\Program Files\PowerShell\Modules\Microsoft.Online.SharePoint.PowerShell"
+import-module "<Full path of EXO V2 module>"
 
 $AdminSiteURL="https://<Tenancy>-admin.sharepoint.com"
 $OneDriveSiteUrl="https://<Tenancy>-my.sharepoint.com/personal/<Personal Site>"

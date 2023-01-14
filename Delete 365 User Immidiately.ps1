@@ -1,4 +1,4 @@
-Import-Module "C:\Users\Work\OneDrive - Leal Technology\Documents\PowerShell\Modules\ExchangeOnlineManagement\2.0.5\ExchangeOnlineManagement.psd1"
+Import-Module "<Full path of EXO V2 module>"
 Connect-ExchangeOnline -UserPrincipalName '<Global Admin>'
 Remove-Mailbox -Identity "<Email Address to Remove>" -Permanent
 Disconnect-ExchangeOnline

@@ -1,6 +1,6 @@
 #Load SharePoint Online Assemblies
-Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.dll"
-Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.dll"
+Add-Type -Path "<Full path of Microsoft.SharePoint.Client module>"
+Add-Type -Path "<Full path of Microsoft.SharePoint.Client.Runtime module"
  
 #To call a non-generic method Load
 Function Invoke-LoadMethod() {

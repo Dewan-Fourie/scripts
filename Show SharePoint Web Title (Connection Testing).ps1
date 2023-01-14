@@ -1,10 +1,10 @@
 #Load SharePoint CSOM Assemblies
-Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.dll"
-Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.dll"
+Add-Type -Path "<Full path of Microsoft.SharePoint.Client module>"
+Add-Type -Path "<Full path of Microsoft.SharePoint.Client.Runtime module>"
  
 #Get Credentials to connect
 $Cred= Get-Credential
-$SiteURL = "https://lealtec.sharepoint.com/sites/Testing"
+$SiteURL = "<SharePoint site URL>"
   
 #Setup the context
 $Ctx = New-Object Microsoft.SharePoint.Client.ClientContext($SiteURL)
